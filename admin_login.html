@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - DDRS</title>
+    <link rel="shortcut icon" href="logo.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #114d24;
+            --green2: #2e6b3e;
+            --bg: #f4f7f4;
+        }
+
+        body {
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+        }
+
+        .login-card {
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid #d9e2dc;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .login-header {
+            background: var(--green);
+            color: white;
+            padding: 25px 15px;
+            text-align: center;
+        }
+
+        .logo-circle {
+            width: 55px;
+            height: 55px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+
+        .portal-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .portal-sub {
+            font-size: 0.75rem;
+            opacity: 0.8;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            font-size: 0.85rem;
+            padding: 10px;
+        }
+
+        .btn-login {
+            background: linear-gradient(180deg, #3d8c4d, #2e6b3e);
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: none;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(180deg, #357944, #255733);
+        }
+
+        .error-msg {
+            color: #b02a37;
+            font-size: 0.8rem;
+            text-align: center;
+            margin-bottom: 10px;
+            display: none;
+        }
+
+        .back-link {
+            color: var(--green);
+            font-size: 0.8rem;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.7rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-5 col-lg-4">
+
+            <div class="card login-card">
+
+                <div class="login-header">
+                    <div class="logo-circle">
+                        <i class="bi bi-shield-lock-fill"></i>
+                    </div>
+                    <h3 class="portal-title" id="portalTitle">DEAN PORTAL</h3>
+                    <p class="portal-sub">College of Engineering</p>
+                </div>
+
+                <div class="card-body p-4">
+
+                    <form onsubmit="return loginCheck()">
+
+                        <div id="errorMsg" class="error-msg">
+                            Invalid username or password
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="text" id="username" class="form-control" placeholder="Username" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="password" id="password" class="form-control" placeholder="Password" required>
+                        </div>
+
+                        <button class="btn btn-login w-100 mb-3">
+                            Sign In
+                        </button>
+
+                        <div class="text-center">
+                            <a href="roles.html" class="back-link">
+                                <i class="bi bi-arrow-left"></i> Back to Role Selection
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2026 College of Engineering, Pamantasan ng Cabuyao
+</footer>
+
+<script>
+    // Dynamic title
+    const params = new URLSearchParams(window.location.search);
+    const role = (params.get('user_type') || 'DEAN').toUpperCase();
+
+    const roleMap = {
+        DEAN: "DEAN PORTAL",
+        CPE: "CPE DEPARTMENT CHAIR",
+        ECE: "ECE DEPARTMENT CHAIR",
+        IE: "IE DEPARTMENT CHAIR",
+        ADMIN: "ADMIN PORTAL"
+    };
+
+    document.getElementById("portalTitle").textContent =
+        roleMap[role] || "DEAN PORTAL";
+
+    // Login logic
+    function loginCheck() {
+        const username = document.getElementById("username").value.trim().toLowerCase();
+        const password = document.getElementById("password").value;
+        const error = document.getElementById("errorMsg");
+
+        const validUsers = ["cpe", "ece", "ie", "dean", "admin"];
+        const validPassword = "@Admin0123";
+
+        if (validUsers.includes(username) && password === validPassword) {
+            window.location.href = "dashboard.html";
+            return false;
+        } else {
+            error.style.display = "block";
+            return false;
+        }
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
