@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking System - College of Engineering</title>
+    <link rel="shortcut icon" href="logo.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --pnc-green: #114d24;
+            --pnc-medium-green: #2e6b3e;
+            --pnc-light-green: #dff1e4;
+            --pnc-red-bg: #f8d7da;
+            --pnc-red-text: #842029;
+            --page-bg: #f4f7f4;
+            --soft-border: #d9e2dc;
+            --soft-text: #5f6b63;
+        }
+
+        body {
+            background-color: var(--page-bg);
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        .navbar-custom {
+            background-color: var(--pnc-green);
+            padding: 0.7rem 1.4rem;
+            color: white;
+        }
+
+        .header-logo-circle {
+            width: 44px;
+            height: 44px;
+            background-color: #b8d0c3;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .header-logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-title {
+            margin: 0;
+            font-size: 0.98rem;
+            font-weight: 700;
+        }
+
+        .brand-subtitle {
+            margin: 0;
+            font-size: 0.74rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .btn-back {
+            background-color: #ffffff;
+            color: var(--pnc-green);
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 7px 16px;
+            border: none;
+            font-size: 0.84rem;
+            text-decoration: none;
+        }
+
+        .btn-back:hover {
+            background-color: #eef3ef;
+        }
+
+        /* ✅ CENTER FIX */
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 60px; /* balanced center */
+        }
+
+        .content-wrapper {
+            max-width: 1180px;
+            width: 100%;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .page-title {
+            font-weight: 800;
+            font-size: 1.7rem;
+            color: var(--pnc-green);
+            margin-bottom: 0.2rem;
+        }
+
+        .page-subtitle {
+            font-size: 0.85rem;
+            color: var(--soft-text);
+        }
+
+        .booking-card {
+            background: white;
+            border: 1px solid var(--soft-border);
+            border-radius: 18px;
+            padding: 1.1rem 1rem 1rem;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.05);
+            transition: 0.2s;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            background: var(--pnc-medium-green);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -28px auto 10px;
+            font-size: 1.3rem;
+            border: 3px solid var(--page-bg);
+        }
+
+        .signatory-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--pnc-green);
+            margin-bottom: 0.6rem;
+        }
+
+        .badge-status {
+            border-radius: 999px;
+            padding: 5px 14px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 0.6rem;
+        }
+
+        .status-available {
+            background-color: var(--pnc-light-green);
+            color: var(--pnc-green);
+        }
+
+        .status-unavailable {
+            background-color: var(--pnc-red-bg);
+            color: var(--pnc-red-text);
+        }
+
+        .btn-book {
+            border-radius: 10px;
+            padding: 8px;
+            font-weight: 700;
+            width: 100%;
+            font-size: 0.82rem;
+            border: none;
+        }
+
+        .btn-book-active {
+            background: var(--pnc-medium-green);
+            color: white;
+        }
+
+        .btn-book-active:hover {
+            background: #255733;
+        }
+
+        .btn-book-disabled {
+            background: #bcbcbc;
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 0.74rem;
+            padding: 0.5rem;
+            color: #7b7b7b;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar-custom d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center gap-2">
+        <div class="header-logo-circle">
+            <img src="logo.png">
+        </div>
+        <div>
+            <h5 class="brand-title">Appointment Dashboard</h5>
+            <p class="brand-subtitle">Book Appointment</p>
+        </div>
+    </div>
+
+    <a href="user_type.html" class="btn btn-back">Back</a>
+</nav>
+
+<section class="main-content">
+    <div class="content-wrapper">
+
+        <div class="page-header">
+            <h1 class="page-title">Choose Your Intended Signatory</h1>
+            <p class="page-subtitle">Check availability and proceed to booking</p>
+        </div>
+
+        <div class="row g-4">
+
+            <div class="col-md-6 col-lg-3">
+                <div class="booking-card">
+                    <div class="icon-circle"><i class="bi bi-calendar3"></i></div>
+                    <div class="signatory-title">CPE Department Chair</div>
+                    <span class="badge-status status-available">Available</span>
+                    <a href="booking_que.html?department=cpe" class="btn btn-book btn-book-active">Book Appointment</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="booking-card">
+                    <div class="icon-circle"><i class="bi bi-calendar3"></i></div>
+                    <div class="signatory-title">ECE Department Chair</div>
+                    <span class="badge-status status-available">Available</span>
+                    <a href="booking_que.html?department=ece" class="btn btn-book btn-book-active">Book Appointment</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="booking-card">
+                    <div class="icon-circle"><i class="bi bi-calendar3"></i></div>
+                    <div class="signatory-title">IE Department Chair</div>
+                    <span class="badge-status status-available">Available</span>
+                    <a href="booking_que.html?department=ie" class="btn btn-book btn-book-active">Book Appointment</a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="booking-card">
+                    <div class="icon-circle"><i class="bi bi-calendar3"></i></div>
+                    <div class="signatory-title">Dean</div>
+                    <span class="badge-status status-unavailable">Unavailable</span>
+                    <button class="btn btn-book btn-book-disabled">Book Appointment</button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<footer>
+    &copy; 2026 College of Engineering, Pamantasan ng Cabuyao
+</footer>
+
+</body>
+</html>
