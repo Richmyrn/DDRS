@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a Deposit - DDRS</title>
+    <link rel="shortcut icon" href="logo.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f4f7f4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .navbar-deposit {
+            background-color: #114d24;
+            padding: 0.6rem 1.3rem;
+            color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-logo-circle {
+            width: 44px;
+            height: 44px;
+            background-color: #b8d0c3;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .header-logo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-title {
+            margin: 0;
+            font-size: 0.96rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .brand-subtitle {
+            margin: 0;
+            font-size: 0.74rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.2;
+        }
+
+        .btn-back {
+            background-color: #ffffff;
+            color: #114d24;
+            font-weight: 700;
+            border-radius: 10px;
+            padding: 7px 14px;
+            border: none;
+            font-size: 0.84rem;
+            min-width: 90px;
+        }
+
+        .btn-back:hover {
+            background-color: #eef3ef;
+            color: #114d24;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0.8rem 0.4rem;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            max-width: 980px;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .page-title {
+            font-weight: 800;
+            font-size: 1.4rem;
+            color: #114d24;
+            margin-bottom: 0.05rem;
+            line-height: 1.15;
+        }
+
+        .page-subtitle {
+            font-size: 0.8rem;
+            color: #5f6b63;
+            margin-bottom: 0;
+            font-weight: 500;
+            line-height: 1.25;
+        }
+
+        .deposit-card {
+            border: 1px solid #d9e2dc;
+            border-radius: 16px;
+            padding: 1rem 1rem 0.8rem;
+            position: relative;
+            background-color: #ffffff;
+            max-width: 460px;
+            margin: 0 auto;
+            box-shadow: 0 5px 14px rgba(0, 0, 0, 0.05);
+        }
+
+        .icon-floating {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(180deg, #3d8c4d 0%, #2e6b3e 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 3px solid #f4f7f4;
+            box-shadow: 0 7px 18px rgba(46, 107, 62, 0.16);
+        }
+
+        .card-title {
+            font-weight: 700;
+            margin-top: 0.35rem;
+            margin-bottom: 0.75rem;
+            color: #114d24;
+            font-size: 0.98rem;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.82rem;
+            margin-bottom: 0.18rem;
+            color: #233328;
+        }
+
+        .form-control,
+        .form-select {
+            border-radius: 10px;
+            border: 1px solid #cfd8d2;
+            padding: 0.5rem 0.7rem;
+            font-size: 0.82rem;
+            box-shadow: none;
+            min-height: 36px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #2e6b3e;
+            box-shadow: 0 0 0 0.12rem rgba(46, 107, 62, 0.12);
+        }
+
+        .form-select {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-select:required:invalid {
+            color: #7b8580;
+        }
+
+        .form-select option {
+            color: #333;
+        }
+
+        .mb-3 {
+            margin-bottom: 0.45rem !important;
+        }
+
+        .form-check {
+            margin-bottom: 0.22rem;
+        }
+
+        .form-check-input {
+            margin-top: 0.16rem;
+            border-color: #7d8b82;
+        }
+
+        .form-check-input:checked {
+            background-color: #2e6b3e;
+            border-color: #2e6b3e;
+        }
+
+        .deposit-type-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #4f5a53;
+        }
+
+        .btn-continue {
+            background: linear-gradient(180deg, #3d8c4d 0%, #2e6b3e 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 9px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            width: 100%;
+            margin-top: 0.25rem;
+        }
+
+        .btn-continue:hover {
+            background: linear-gradient(180deg, #357944 0%, #255733 100%);
+            color: white;
+        }
+
+        .modal-content-custom {
+            border-radius: 18px;
+            border: none;
+            padding: 1rem 1rem 0.9rem;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .modal-header-custom {
+            border: none;
+            justify-content: center;
+            padding-bottom: 0.2rem;
+        }
+
+        .modal-title-custom {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #114d24;
+            text-transform: uppercase;
+        }
+
+        .modal-body-custom {
+            font-size: 0.84rem;
+            line-height: 1.4;
+            color: #47524a;
+            text-align: left;
+            padding-top: 0.15rem;
+        }
+
+        .input-pill {
+            border-radius: 10px;
+            border: 1px solid #cfd8d2;
+            padding: 9px 12px;
+            font-size: 0.84rem;
+            width: 100%;
+            margin-top: 0.65rem;
+        }
+
+        .input-pill:focus {
+            outline: none;
+            border-color: #2e6b3e;
+            box-shadow: 0 0 0 0.12rem rgba(46, 107, 62, 0.12);
+        }
+
+        .input-pill::placeholder {
+            color: #a3aca6;
+        }
+
+        .form-check-custom {
+            margin-top: 0.85rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .checkbox-large {
+            width: 18px;
+            height: 18px;
+            border: 1px solid #7d8b82;
+            border-radius: 4px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-large:checked {
+            background-color: #2e6b3e;
+            border-color: #2e6b3e;
+        }
+
+        .modal-footer-custom {
+            border: none;
+            padding-top: 0.9rem;
+            justify-content: center;
+        }
+
+        .btn-modal-continue {
+            background: linear-gradient(180deg, #3d8c4d 0%, #2e6b3e 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 9px 0;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            width: 100%;
+            max-width: 240px;
+        }
+
+        .btn-modal-continue:hover {
+            background: linear-gradient(180deg, #357944 0%, #255733 100%);
+            color: white;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 0.35rem 0.8rem 0.5rem;
+            text-align: center;
+            font-size: 0.72rem;
+            color: #7b7b7b;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 767px) {
+            body {
+                overflow-y: auto;
+            }
+
+            .navbar-deposit {
+                padding: 0.7rem 0.9rem;
+            }
+
+            .brand-subtitle {
+                display: none;
+            }
+
+            .page-title {
+                font-size: 1.25rem;
+            }
+
+            .page-subtitle {
+                font-size: 0.78rem;
+            }
+
+            .main-content {
+                padding: 0.9rem 0.7rem;
+                align-items: flex-start;
+            }
+
+            .deposit-card {
+                padding: 0.95rem 0.9rem 0.75rem;
+                max-width: 100%;
+            }
+
+            .icon-floating {
+                width: 44px;
+                height: 44px;
+                font-size: 1.2rem;
+                top: -22px;
+            }
+
+            .btn-back {
+                min-width: unset;
+                padding: 7px 12px;
+                font-size: 0.8rem;
+            }
+
+            .modal-content-custom {
+                padding: 0.95rem 0.9rem 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-deposit d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <div class="header-logo-circle me-2">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <div>
+                <h5 class="brand-title">Document Deposit Dashboard</h5>
+                <p class="brand-subtitle">Create a new document deposit</p>
+            </div>
+        </div>
+        <a href="faculty_deposit.php" class="btn btn-back">Back</a>
+    </nav>
+
+    <section class="main-content">
+        <div class="content-wrapper">
+            <div class="page-header">
+                <h1 class="page-title">Create a Deposit</h1>
+                <p class="page-subtitle">Please enter the required document details</p>
+            </div>
+
+            <form method="POST" onsubmit="return verify();" name="create_deposit_form">
+                <div class="deposit-card">
+                    <div class="icon-floating">
+                        <i class="bi bi-upload"></i>
+                    </div>
+
+                    <h5 class="card-title">Please Input Details</h5>
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Department</label>
+                        <select class="form-select" name="department" required>
+                            <option value="" selected disabled hidden>Select department</option>
+                            <option>ECE</option>
+                            <option>IE</option>
+                            <option>CPE</option>
+                            <option>DEAN</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label">Document Type</label>
+                        <select class="form-select" name="document_type" required id="otherss">
+                            <option value="" selected disabled hidden>Select document type</option>
+                            <option>Examination paper</option>
+                            <option>Endorsement Letter</option>
+                            <option>Project Proposal</option>
+                            <option>Memorandum of Agreement</option>
+                            <option>Others</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label">If Others</label>
+                        <input class="form-control" type="text" name="others" id="otherss_field" placeholder="Specify document type if others is selected">
+                    </div>
+
+                    <div class="mb-3 text-start">
+                        <label class="form-label">From</label>
+                        <input type="text" name="deposit_from" required class="form-control" placeholder="Enter source department or office">
+                    </div>
+
+                    <div class="text-start mb-3">
+                        <label class="form-label">Deposit Type</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="deposit_type" id="type1" checked value="For signing and retrieval">
+                            <label class="form-check-label deposit-type-label" for="type1">
+                                For signing and retrieval
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="deposit_type" id="type2" value="For office filing only">
+                            <label class="form-check-label deposit-type-label" for="type2">
+                                For office filing only
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-continue" data-bs-toggle="modal" data-bs-target="#noticeModal">
+                        Continue
+                    </button>
+                </div>
+
+                <div class="modal fade" id="noticeModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-md">
+                        <div class="modal-content modal-content-custom">
+
+                            <div class="modal-header modal-header-custom">
+                                <h2 class="modal-title modal-title-custom">Notice</h2>
+                            </div>
+
+                            <div class="modal-body modal-body-custom">
+                                <p>
+                                    You may enter your name for clearer identification of the person submitting this document. This is optional and will only be used as an additional reference.
+                                </p>
+
+                                <input type="text" class="input-pill" placeholder="Optional name" name="name">
+
+                                <div class="form-check-custom">
+                                    <input class="form-check-input checkbox-large" type="checkbox" id="confirmCheck" required>
+                                    <label class="form-check-label" for="confirmCheck">
+                                        I confirm that I am a faculty member or authorized to submit this document on behalf of one.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer modal-footer-custom">
+                                <button type="submit" class="btn btn-modal-continue" name="add">Continue</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 College of Engineering, Pamantasan ng Cabuyao
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function verify() {
+            var a = document.getElementById('otherss').value;
+            var b = document.getElementById('otherss_field').value.trim();
+
+            if (a === "Others" && b === "") {
+                alert("Please specify the document type in the 'If Others' field.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

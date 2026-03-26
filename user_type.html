@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="logo.png" />
+    <title>DDRS Dashboard - Select User Type</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #f4f7f4;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        .navbar-custom {
+            background-color: #114d24;
+            padding: 0.9rem 1.8rem;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .header-logo {
+            width: 52px;
+            height: 52px;
+            background-color: #b8d0c3;
+            border-radius: 50%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .brand-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .brand-subtitle {
+            font-size: 0.83rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+        }
+
+        .admin-btn {
+            width: 48px;
+            height: 48px;
+            background-color: #2e6b3e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: 0.2s ease;
+        }
+
+        .admin-btn:hover {
+            background-color: #245531;
+        }
+
+        .admin-btn i {
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        .main-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 1rem 1rem;
+        }
+
+        .content-wrapper {
+            width: 100%;
+            max-width: 1120px;
+        }
+
+        .selection-title {
+            font-weight: 800;
+            font-size: 2.2rem;
+            color: #114d24;
+            margin-bottom: 0.4rem;
+        }
+
+        .selection-subtitle {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #5f6b63;
+            margin-bottom: 2rem;
+        }
+
+        .user-card {
+            background: #ffffff;
+            border: 1px solid #d9e2dc;
+            border-radius: 22px;
+            padding: 2rem 1.6rem 1.5rem;
+            height: 100%;
+            text-align: center;
+            transition: 0.2s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+        }
+
+        .user-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.07);
+        }
+
+        .icon-circle {
+            width: 72px;
+            height: 72px;
+            background-color: #2e6b3e;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.55rem;
+            margin-bottom: 0.8rem;
+            color: #114d24;
+        }
+
+        .card-text {
+            color: #5b5b5b;
+            font-size: 0.98rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+            min-height: 72px;
+        }
+
+        .btn-custom {
+            background-color: #2e6b3e;
+            color: white;
+            border-radius: 14px;
+            padding: 12px 20px;
+            font-weight: 600;
+            border: none;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .btn-custom:hover {
+            background-color: #1e4528;
+            color: white;
+        }
+
+        .quick-guide {
+            margin-top: 1.5rem;
+            background: #ffffff;
+            border-left: 5px solid #2e6b3e;
+            border-radius: 14px;
+            padding: 1rem 1.2rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.04);
+            text-align: left;
+        }
+
+        .quick-guide h6 {
+            color: #114d24;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        .quick-guide p {
+            margin: 0;
+            color: #5d665f;
+            font-size: 0.93rem;
+            line-height: 1.5;
+        }
+
+        footer {
+            padding: 0.9rem 1rem 1.1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #7b7b7b;
+        }
+
+        @media (max-width: 991px) {
+            .selection-title {
+                font-size: 2rem;
+            }
+
+            .card-text {
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .navbar-custom {
+                padding: 0.8rem 1rem;
+            }
+
+            .brand-subtitle {
+                display: none;
+            }
+
+            .selection-title {
+                font-size: 1.8rem;
+            }
+
+            .selection-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .main-section {
+                padding: 1rem 0.8rem;
+            }
+
+            .user-card {
+                padding: 1.7rem 1.2rem 1.3rem;
+            }
+
+            .icon-circle {
+                width: 64px;
+                height: 64px;
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-custom d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center">
+            <div class="header-logo me-3">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <div>
+                <h5 class="brand-title">DDRS Dashboard</h5>
+                <p class="brand-subtitle">Secure document deposit, retrieval, and scheduling</p>
+            </div>
+        </div>
+
+        <a href="roles.php" class="admin-btn" title="Admin / Roles">
+            <i class="bi bi-shield-check"></i>
+        </a>
+    </nav>
+
+    <section class="main-section">
+        <div class="content-wrapper">
+            <div class="text-center mb-4">
+                <h1 class="selection-title">Select User Type</h1>
+                <p class="selection-subtitle">Choose how you want to use the DDRS</p>
+            </div>
+
+            <div class="row justify-content-center g-4">
+                <div class="col-md-6 col-lg-5">
+                    <div class="user-card">
+                        <div class="icon-circle">
+                            <i class="bi bi-person-workspace"></i>
+                        </div>
+                        <h3 class="card-title">Faculty</h3>
+                        <p class="card-text">
+                            Submit and retrieve confidential documents through the secure document handling process.
+                        </p>
+                        <a class="btn btn-custom" href="faculty_deposit.php">Continue as Faculty</a>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-5">
+                    <div class="user-card">
+                        <div class="icon-circle">
+                            <i class="bi bi-calendar2-check"></i>
+                        </div>
+                        <h3 class="card-title">Appointment</h3>
+                        <p class="card-text">
+                            Book an appointment with the Dean or department chairs for signing or consultation.
+                        </p>
+                        <a href="booking.php" class="btn btn-custom">Continue to Booking</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-guide">
+                <h6><i class="bi bi-info-circle me-1"></i> Quick Guide</h6>
+                <p>
+                    Select <strong>Faculty</strong> for document deposit or retrieval, or choose <strong>Appointment</strong> to schedule a visit with a signatory.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 College of Engineering, Pamantasan ng Cabuyao
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
